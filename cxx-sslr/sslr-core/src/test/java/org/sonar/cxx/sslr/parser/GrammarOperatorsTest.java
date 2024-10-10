@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -103,16 +103,16 @@ class GrammarOperatorsTest {
 
   @Test
   void illegal_argument() {
-    var thrown = catchThrowableOfType(
-      () -> GrammarOperators.sequence(new Object()),
-      IllegalArgumentException.class);
+    var thrown = catchThrowableOfType(IllegalArgumentException.class,
+      () -> GrammarOperators.sequence(new Object())
+    );
     assertThat(thrown).hasMessage("Incorrect type of parsing expression: class java.lang.Object");
   }
 
   @Test
   void private_constructor() throws Exception {
     Constructor constructor = GrammarOperators.class.getDeclaredConstructor();
-    assertThat(constructor.isAccessible()).isFalse();
+    assertThat(constructor.canAccess(null)).isFalse();
     constructor.setAccessible(true);
     constructor.newInstance();
   }

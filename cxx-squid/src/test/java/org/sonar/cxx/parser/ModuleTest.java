@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -117,12 +117,12 @@ class ModuleTest extends ParserBaseTestHelper {
   void exportDeclaration() {
     setRootRule(CxxGrammarImpl.exportDeclaration);
 
-    mockRule(CxxGrammarImpl.declaration);
+    mockRule(CxxGrammarImpl.nameDeclaration);
     mockRule(CxxGrammarImpl.declarationSeq);
     mockRule(CxxGrammarImpl.moduleImportDeclaration);
 
     assertThatParser()
-      .matches("export declaration")
+      .matches("export nameDeclaration")
       .matches("export { }")
       .matches("export { declarationSeq }")
       .matches("export moduleImportDeclaration");

@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -74,15 +74,5 @@ public interface Rule extends AstNodeType {
    */
   @Deprecated(since = "1.19")
   void skipIfOneChild();
-
-  /**
-   * Utility method used for unit testing in order to dynamically replace the definition of the rule to match as soon as
-   * a token whose value
-   * equals the name of the rule is encountered.
-   *
-   * @deprecated in 1.18, use {@link #override(Object...)} instead.
-   */
-  @Deprecated(since = "1.18")
-  void mock();
 
 }

@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -31,8 +31,8 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.regex.Matcher;
 import org.apache.commons.io.FilenameUtils;
-import org.sonar.api.utils.log.Logger;
-import org.sonar.api.utils.log.Loggers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sonar.cxx.sensors.coverage.CoverageMeasures;
 import org.sonar.cxx.sensors.coverage.CoverageParser;
 import static org.sonar.cxx.sensors.coverage.ctc.TestwellCtcTxtResult.FILE_HEADER;
@@ -47,7 +47,7 @@ import org.sonar.cxx.sensors.utils.TextScanner;
  */
 public class TestwellCtcTxtParser implements CoverageParser {
 
-  private static final Logger LOG = Loggers.get(TestwellCtcTxtParser.class);
+  private static final Logger LOG = LoggerFactory.getLogger(TestwellCtcTxtParser.class);
 
   private static final int FROM_START = 0;
   private static final int CONDS_FALSE = 1;

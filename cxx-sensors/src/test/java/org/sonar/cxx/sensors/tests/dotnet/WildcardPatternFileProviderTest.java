@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -111,7 +111,7 @@ class WildcardPatternFileProviderTest {
 
     assertThat(listFiles(new File(tempDir, path("**", "c?1", "foo.txt")).getAbsolutePath()))
       .containsOnly(new File(tempDir, path("c", "c21", "foo.txt")), new File(tempDir,
-                                                                             path("c", "c22", "c31", "foo.txt")));
+        path("c", "c22", "c31", "foo.txt")));
 
     assertThat(listFiles(new File(tempDir, path("?", "**", "foo.txt")).getAbsolutePath()))
       .containsOnly(
@@ -168,7 +168,7 @@ class WildcardPatternFileProviderTest {
 
     assertThat(listFiles(path("**", "c?1", "foo.txt"), tempDir))
       .containsOnly(new File(tempDir, path("c", "c21", "foo.txt")), new File(tempDir,
-                                                                             path("c", "c22", "c31", "foo.txt")));
+        path("c", "c22", "c31", "foo.txt")));
 
     assertThat(listFiles(path("?", "**", "foo.txt"), tempDir))
       .containsOnly(
@@ -179,17 +179,17 @@ class WildcardPatternFileProviderTest {
 
   @Test
   void should_fail_with_current_folder_access_after_wildcard() {
-    IllegalArgumentException thrown = catchThrowableOfType(() -> {
+    IllegalArgumentException thrown = catchThrowableOfType(IllegalArgumentException.class, () -> {
       listFiles(new File(tempDir, path("?", ".", "foo.txt")).getAbsolutePath());
-    }, IllegalArgumentException.class);
+    });
     assertThat(thrown).hasMessage("Cannot contain '.' or '..' after the first wildcard.");
   }
 
   @Test
   void should_fail_with_parent_folder_access_after_wildcard() {
-    IllegalArgumentException thrown = catchThrowableOfType(() -> {
+    IllegalArgumentException thrown = catchThrowableOfType(IllegalArgumentException.class, () -> {
       listFiles(path("*", "..", "foo.txt"), tempDir);
-    }, IllegalArgumentException.class);
+    });
     assertThat(thrown).hasMessage("Cannot contain '.' or '..' after the first wildcard.");
   }
 

@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -26,12 +26,12 @@ package org.sonar.cxx.sensors.tests.dotnet;
 import java.io.File;
 import java.io.IOException;
 import javax.annotation.CheckForNull;
-import org.sonar.api.utils.log.Logger;
-import org.sonar.api.utils.log.Loggers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class NUnitTestResultsFileParser implements UnitTestResultsParser {
 
-  private static final Logger LOG = Loggers.get(NUnitTestResultsFileParser.class);
+  private static final Logger LOG = LoggerFactory.getLogger(NUnitTestResultsFileParser.class);
 
   @Override
   public void accept(File file, UnitTestResults unitTestResults) {

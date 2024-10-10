@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -24,14 +24,14 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.regex.Pattern;
-import org.sonar.api.utils.log.Logger;
-import org.sonar.api.utils.log.Loggers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sonar.cxx.sensors.utils.TextScanner;
 import org.sonar.cxx.utils.CxxReportIssue;
 
 public class ClangTidyParser {
 
-  private static final Logger LOG = Loggers.get(ClangTidyParser.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ClangTidyParser.class);
 
   private static final String REGEX = "((?>[a-zA-Z]:[\\\\/])??[^:]++):(\\d{1,5}):(\\d{1,5}): ([^:]++): (.+)";
   private static final Pattern PATTERN = Pattern.compile(REGEX);

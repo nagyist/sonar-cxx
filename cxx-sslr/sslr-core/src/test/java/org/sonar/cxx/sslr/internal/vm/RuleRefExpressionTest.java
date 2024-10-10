@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -43,9 +43,9 @@ class RuleRefExpressionTest {
 
   @Test
   void can_not_be_executed() {
-    var thrown = catchThrowableOfType(
-      () -> expression.execute(machine),
-      UnsupportedOperationException.class);
+    var thrown = catchThrowableOfType(UnsupportedOperationException.class,
+      () -> expression.execute(machine)
+    );
     assertThat(thrown).isExactlyInstanceOf(UnsupportedOperationException.class);
   }
 

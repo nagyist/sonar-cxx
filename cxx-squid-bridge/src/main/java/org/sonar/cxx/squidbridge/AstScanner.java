@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2021-2022 SonarOpenCommunity
+ * Copyright (C) 2021-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -38,8 +38,8 @@ import java.util.Collection;
 import java.util.List;
 import javax.annotation.Nullable;
 import org.sonar.api.batch.fs.InputFile;
-import org.sonar.api.utils.log.Logger;
-import org.sonar.api.utils.log.Loggers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sonar.cxx.squidbridge.api.AnalysisException;
 import org.sonar.cxx.squidbridge.api.SourceCodeSearchEngine;
 import org.sonar.cxx.squidbridge.api.SourceCodeTreeDecorator;
@@ -49,7 +49,7 @@ import org.sonar.cxx.squidbridge.measures.MetricDef;
 
 public class AstScanner<G extends Grammar> {
 
-  private static final Logger LOG = Loggers.get(AstScanner.class);
+  private static final Logger LOG = LoggerFactory.getLogger(AstScanner.class);
 
   private final List<SquidAstVisitor<G>> visitors;
   private final Parser<G> parser;

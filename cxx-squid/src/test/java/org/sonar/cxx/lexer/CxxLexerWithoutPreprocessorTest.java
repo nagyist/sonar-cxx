@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -66,7 +66,7 @@ class CxxLexerWithoutPreprocessorTest {
   @Test
   void preprocessor_continued_define() {
     assertThat(lexer.lex("#define M\\\n"
-                           + "0")).anySatisfy(token -> assertThat(token).isValue("#define M 0").hasType(
+                           + "0")).anySatisfy(token -> assertThat(token).isValue("#define M0").hasType(
       CxxTokenType.PREPROCESSOR));
   }
 

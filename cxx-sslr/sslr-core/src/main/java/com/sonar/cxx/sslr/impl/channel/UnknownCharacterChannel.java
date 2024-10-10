@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -40,14 +40,6 @@ public class UnknownCharacterChannel extends Channel<Lexer> {
   private final Token.Builder tokenBuilder = Token.builder();
 
   public UnknownCharacterChannel() {
-  }
-
-  /**
-   * @deprecated logging removed in 1.20, use {@link #UnknownCharacterChannel()} or implement your own Channel with
-   * logging
-   */
-  @Deprecated
-  public UnknownCharacterChannel(boolean shouldLogWarning) {
   }
 
   @Override

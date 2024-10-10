@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -25,8 +25,8 @@ import com.google.gson.stream.JsonReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import org.sonar.api.utils.log.Logger;
-import org.sonar.api.utils.log.Loggers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sonar.cxx.sensors.utils.EmptyReportException;
 import org.sonar.cxx.sensors.utils.InvalidReportException;
 import org.sonar.cxx.utils.CxxReportIssue;
@@ -38,7 +38,7 @@ import org.sonar.cxx.utils.CxxReportIssue;
  */
 public class InferParser {
 
-  private static final Logger LOG = Loggers.get(InferParser.class);
+  private static final Logger LOG = LoggerFactory.getLogger(InferParser.class);
 
   private final CxxInferSensor sensor;
 

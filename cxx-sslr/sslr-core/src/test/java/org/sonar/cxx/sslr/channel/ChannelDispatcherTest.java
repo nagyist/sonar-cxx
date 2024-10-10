@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -40,7 +40,7 @@ class ChannelDispatcherTest {
   @Test
   void shouldAddChannels() {
     var dispatcher = ChannelDispatcher.builder().addChannels(new SpaceDeletionChannel(),
-                                                         new FakeChannel()).build();
+      new FakeChannel()).build();
     assertThat(dispatcher.getChannels()).hasSize(2);
     assertThat(dispatcher.getChannels()[0]).isInstanceOf(SpaceDeletionChannel.class);
     assertThat(dispatcher.getChannels()[1]).isInstanceOf(FakeChannel.class);
@@ -50,9 +50,9 @@ class ChannelDispatcherTest {
   void shouldThrowExceptionWhenNoChannelToConsumeNextCharacter() {
     var dispatcher = ChannelDispatcher.builder().failIfNoChannelToConsumeOneCharacter().build();
 
-    var thrown = catchThrowableOfType(() -> {
+    var thrown = catchThrowableOfType(IllegalStateException.class, () -> {
       dispatcher.consume(new CodeReader("two words"), new StringBuilder());
-    }, IllegalStateException.class);
+    });
     assertThat(thrown).isExactlyInstanceOf(IllegalStateException.class);
   }
 

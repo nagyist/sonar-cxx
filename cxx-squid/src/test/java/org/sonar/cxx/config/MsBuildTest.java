@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -25,7 +25,7 @@ import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.sonar.api.internal.apachecommons.lang.SystemUtils;
+import org.sonar.api.internal.apachecommons.lang3.SystemUtils;
 
 /**
  * These tests ensure that the relative paths in the INCLUDES are correctly converted to absolute paths. The project

@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2021-2022 SonarOpenCommunity
+ * Copyright (C) 2021-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -96,9 +96,9 @@ class AbstractXPathCheckTest {
   @Test
   void wrong_xpath() {
     check.xpath = "//";
-    IllegalStateException thrown = catchThrowableOfType(() -> {
+    IllegalStateException thrown = catchThrowableOfType(IllegalStateException.class, () -> {
       scanFile("/checks/xpath.mc", check);
-    }, IllegalStateException.class);
+    });
     assertThat(thrown)
       .isExactlyInstanceOf(IllegalStateException.class)
       .hasMessage("Unable to initialize the XPath engine, perhaps because of an invalid query: //");

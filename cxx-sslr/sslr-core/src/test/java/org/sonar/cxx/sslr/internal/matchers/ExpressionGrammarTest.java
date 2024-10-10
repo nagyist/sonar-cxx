@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -70,20 +70,6 @@ class ExpressionGrammarTest {
     var parseRunner = new ParseRunner(grammar.expression);
     var result = parseRunner.parse(input);
     assertThat(result.isMatched()).isTrue();
-  }
-
-  @Test
-  void should_mock() {
-    var inputString = "term plus term";
-    var input = inputString.toCharArray();
-    grammar.term.mock();
-    grammar.plus.mock();
-    var parseRunner = new ParseRunner(grammar.root);
-    var result = parseRunner.parse(input);
-    assertThat(result.isMatched()).isTrue();
-    ParseTreePrinter.print(result.getParseTreeRoot(), input);
-    assertThat(ParseTreePrinter.leafsToString(result.getParseTreeRoot(), input)).as("full-fidelity").isEqualTo(
-      inputString);
   }
 
   @Test

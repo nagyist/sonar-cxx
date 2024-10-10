@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -34,17 +34,17 @@ class ParserTest {
 
   @Test
   void lexerErrorStringWrappedInRecognitionException() {
-    var thrown = catchThrowableOfType(() -> {
+    var thrown = catchThrowableOfType(RecognitionException.class, () -> {
       parseString(".");
-    }, RecognitionException.class);
+    });
     assertThat(thrown).isExactlyInstanceOf(RecognitionException.class);
   }
 
   @Test
   void lexerErrorFileWrappedInRecognitionException() {
-    var thrown = catchThrowableOfType(() -> {
+    var thrown = catchThrowableOfType(RecognitionException.class, () -> {
       parseFile("/OwnExamples/lexererror.mc");
-    }, RecognitionException.class);
+    });
     assertThat(thrown).isExactlyInstanceOf(RecognitionException.class);
   }
 

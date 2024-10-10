@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -47,6 +47,15 @@ public class LexerAssert extends AbstractAssert<LexerAssert, Token> {
     String tokenValue = actual.getValue();
     if (!tokenValue.contentEquals(value)) {
       failWithMessage("Expected the Token value to be <%s> but was <%s>", value, tokenValue);
+    }
+    return this;
+  }
+
+  public LexerAssert isLine(int line) {
+    isNotNull();
+    int tokenLine = actual.getLine();
+    if (tokenLine != line) {
+      failWithMessage("Expected the Token line to be <%s> but was <%s>", line, tokenLine);
     }
     return this;
   }

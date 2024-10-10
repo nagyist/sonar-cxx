@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -174,9 +174,9 @@ class InstructionTest {
     stack.setIndex(13);
     when(machine.peek()).thenReturn(stack);
     when(machine.getIndex()).thenReturn(13);
-    var thrown = catchThrowableOfType(
-      () -> instruction.execute(machine),
-      GrammarException.class);
+    var thrown = catchThrowableOfType(GrammarException.class,
+      () -> instruction.execute(machine)
+    );
     assertThat(thrown).hasMessage("The inner part of ZeroOrMore and OneOrMore must not allow empty matches");
   }
 

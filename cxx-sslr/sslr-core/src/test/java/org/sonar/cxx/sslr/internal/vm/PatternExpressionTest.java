@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -92,12 +92,12 @@ class PatternExpressionTest {
   void should_catch_StackOverflowError() {
     when(machine.length()).thenReturn(1);
     when(machine.charAt(0)).thenThrow(StackOverflowError.class);
-    var thrown = catchThrowableOfType(
-      () -> expression.execute(machine),
-      GrammarException.class);
+    var thrown = catchThrowableOfType(GrammarException.class,
+      () -> expression.execute(machine)
+    );
     assertThat(thrown)
       .hasMessage("The regular expression 'foo|bar' has led to a stack overflow error."
-                    + " This error is certainly due to an inefficient use of alternations. See http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5050507");
+        + " This error is certainly due to an inefficient use of alternations. See http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=5050507");
   }
 
 }

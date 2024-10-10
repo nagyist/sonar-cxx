@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -41,7 +41,7 @@ class LexerlessGrammarTest {
 
   @Test
   void should_throw_exception() {
-    var thrown = catchThrowableOfType(IllegalGrammar::new, GrammarException.class);
+    var thrown = catchThrowableOfType(GrammarException.class, IllegalGrammar::new);
     assertThat(thrown).hasMessageStartingWith("Unable to instanciate the rule 'rootRule': ");
   }
 

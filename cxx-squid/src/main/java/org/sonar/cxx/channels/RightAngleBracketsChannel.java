@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -48,10 +48,9 @@ public class RightAngleBracketsChannel extends Channel<Lexer> {
 
   @Override
   public boolean consume(CodeReader code, Lexer output) {
-    var ch = (char) code.peek();
     var consumed = false;
 
-    switch (ch) {
+    switch (code.charAt(0)) {
       case '(':
         if (angleBracketLevel > 0) {
           parentheseLevel++;

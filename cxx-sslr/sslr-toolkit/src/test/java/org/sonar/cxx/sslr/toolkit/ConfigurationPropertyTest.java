@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -46,8 +46,8 @@ class ConfigurationPropertyTest {
     assertThat(new ConfigurationProperty("", "", "").validate("foo")).isEmpty();
 
     var property = new ConfigurationProperty("", "", "foo", (String newValueCandidate) -> "foo".equals(newValueCandidate)
-                                                                                        ? ""
-                                                                                        : "Only the value \"foo\" is allowed.");
+      ? ""
+      : "Only the value \"foo\" is allowed.");
     assertThat(property.validate("")).isEqualTo("Only the value \"foo\" is allowed.");
     assertThat(property.validate("foo")).isEmpty();
     assertThat(property.validate("bar")).isEqualTo("Only the value \"foo\" is allowed.");
@@ -61,12 +61,11 @@ class ConfigurationPropertyTest {
 
   @Test
   void setValue_should_fail_if_validation_fails() {
-    var thrown = catchThrowableOfType(
-      () -> new ConfigurationProperty("", "", "", (String newValueCandidate) -> newValueCandidate.isEmpty() ? ""
-                                                                                : "The value \"" + newValueCandidate
-                                                                                  + "\" did not pass validation: Not valid!")
-        .setValue("foo"),
-      IllegalArgumentException.class);
+    var thrown = catchThrowableOfType(IllegalArgumentException.class,
+      () -> new ConfigurationProperty("", "", "", (String newValueCandidate)
+        -> newValueCandidate.isEmpty() ? "" : "The value \"" + newValueCandidate + "\" did not pass validation: Not valid!")
+        .setValue("foo")
+    );
     assertThat(thrown).hasMessageContaining("The value \"foo\" did not pass validation: Not valid!");
   }
 

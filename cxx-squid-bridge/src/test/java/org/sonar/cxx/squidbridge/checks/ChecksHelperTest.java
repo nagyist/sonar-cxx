@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2021-2022 SonarOpenCommunity
+ * Copyright (C) 2021-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -31,7 +31,7 @@ class ChecksHelperTest {
   @Test
   void private_constructor() throws Exception {
     var constructor = ChecksHelper.class.getDeclaredConstructor();
-    assertThat(constructor.isAccessible()).isFalse();
+    assertThat(constructor.canAccess(null)).isFalse();
     constructor.setAccessible(true);
     constructor.newInstance();
   }

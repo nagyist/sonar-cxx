@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -45,8 +45,7 @@ public class ParserBaseTestHelper {
 
   public ParserBaseTestHelper() {
     squidConfig = new CxxSquidConfiguration();
-    squidConfig.add(CxxSquidConfiguration.SONAR_PROJECT_PROPERTIES, CxxSquidConfiguration.ERROR_RECOVERY_ENABLED,
-                    "false");
+    squidConfig.add(CxxSquidConfiguration.SONAR_PROJECT_PROPERTIES, CxxSquidConfiguration.ERROR_RECOVERY_ENABLED, "false");
 
     var file = new File("snippet.cpp").getAbsoluteFile();
     SquidAstVisitorContextImpl<Grammar> context = mock(SquidAstVisitorContextImpl.class);
@@ -62,7 +61,7 @@ public class ParserBaseTestHelper {
   }
 
   public void mockRule(GrammarRuleKey ruleKey) {
-    g.rule(ruleKey).mock();
+    g.rule(ruleKey).override(ruleKey.toString());
   }
 
   public ParserAssert assertThatParser() {

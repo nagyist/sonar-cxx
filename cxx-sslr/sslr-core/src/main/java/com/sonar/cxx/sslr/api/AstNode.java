@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -106,18 +106,6 @@ public class AstNode {
 
   public int getNumberOfChildren() {
     return children.size();
-  }
-
-  /**
-   * @deprecated in 1.19.2, use {@link #getFirstChild(AstNodeType...)} instead
-   */
-  @Deprecated(since = "1.19.2")
-  public AstNode getChild(int index) {
-    if (index >= getNumberOfChildren()) {
-      throw new IllegalStateException("The AstNode '" + this + "' has only " + getNumberOfChildren()
-                                        + " children. Requested child index is wrong : " + index);
-    }
-    return children.get(index);
   }
 
   /**

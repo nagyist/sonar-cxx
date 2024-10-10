@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -65,9 +65,9 @@ class RuleBuilderTest {
     when(delegate.getExpression()).thenReturn(e);
     var ruleKey = mock(GrammarRuleKey.class);
     when(delegate.getRuleKey()).thenReturn(ruleKey);
-    var thrown = catchThrowableOfType(
-      () -> ruleBuilder.is(e),
-      GrammarException.class);
+    var thrown = catchThrowableOfType(GrammarException.class,
+      () -> ruleBuilder.is(e)
+    );
     assertThat(thrown).hasMessage("The rule '" + ruleKey + "' has already been defined somewhere in the grammar.");
   }
 

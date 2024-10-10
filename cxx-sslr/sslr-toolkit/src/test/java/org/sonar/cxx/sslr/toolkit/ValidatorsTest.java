@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -67,9 +67,9 @@ class ValidatorsTest {
 
   @Test
   void integerRangeValidator_should_fail_with_upper_smaller_than_lower_bound() {
-    var thrown = catchThrowableOfType(
-      () -> Validators.integerRangeValidator(42, 0),
-      IllegalArgumentException.class);
+    var thrown = catchThrowableOfType(IllegalArgumentException.class,
+      () -> Validators.integerRangeValidator(42, 0)
+    );
     assertThat(thrown).hasMessage("lowerBound(42) <= upperBound(0)");
   }
 

@@ -11,12 +11,14 @@ adds C++ support to SonarQube with the focus on integration of existing C++ tool
 
 The sensors for reading reports can be used with this _cxx plugin_ or [SonarCFamily](https://www.sonarsource.com/cpp/) plugin.
 
+** Branch for SonarQube 10 development **
+
 ## License
 This plugin is free software; you can redistribute it and/or modify it under the terms of the [GNU Lesser General Public License](https://github.com/SonarOpenCommunity/sonar-cxx/blob/master/LICENSE) as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
 
 ## Features
 * parser supporting
-  * `C++03`, `C++11`, `C++14`,`C++17`, `C++20`
+  * `C++03`, `C++11`, `C++14`,`C++17`, `C++20`, `C++23`
   * `C89`, `C99`, `C11`, `C17`
 * compiler specific extensions
   * Microsoft extensions: `C++/CLI`, `Attributed ATL`

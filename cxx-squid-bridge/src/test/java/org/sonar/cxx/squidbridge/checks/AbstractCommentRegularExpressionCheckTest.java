@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2021-2022 SonarOpenCommunity
+ * Copyright (C) 2021-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -81,9 +81,9 @@ class AbstractCommentRegularExpressionCheckTest {
   @Test
   void wrong_regular_expression() {
     check.regularExpression = "*";
-    IllegalStateException thrown = catchThrowableOfType(() -> {
+    IllegalStateException thrown = catchThrowableOfType(IllegalStateException.class, () -> {
       scanFile("/checks/commentRegularExpression.mc", check);
-    }, IllegalStateException.class);
+    });
     assertThat(thrown)
       .isExactlyInstanceOf(IllegalStateException.class)
       .hasMessage("Unable to compile regular expression: *");

@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -112,7 +112,7 @@ class MachineIntegrationTest {
       new FirstOfExpression(
         new StringExpression("foo"),
         new StringExpression(""))).compile(new CompilationHandler());
-    var thrown = catchThrowableOfType(() -> Machine.execute("foo", instructions), GrammarException.class);
+    var thrown = catchThrowableOfType(GrammarException.class, () -> Machine.execute("foo", instructions));
     assertThat(thrown).hasMessage("The inner part of ZeroOrMore and OneOrMore must not allow empty matches");
   }
 
@@ -132,7 +132,7 @@ class MachineIntegrationTest {
       new FirstOfExpression(
         new StringExpression("foo"),
         new StringExpression(""))).compile(new CompilationHandler());
-    var thrown = catchThrowableOfType(() -> Machine.execute("foo", instructions), GrammarException.class);
+    var thrown = catchThrowableOfType(GrammarException.class, () -> Machine.execute("foo", instructions));
     assertThat(thrown).hasMessage("The inner part of ZeroOrMore and OneOrMore must not allow empty matches");
   }
 

@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -69,12 +69,17 @@ public class CxxFileTesterHelper {
   }
 
   private static String getSourceCode(File filename, Charset defaultCharset) throws IOException {
-    try (var bomInputStream = new BOMInputStream(new FileInputStream(filename),
-                                             ByteOrderMark.UTF_8,
-                                             ByteOrderMark.UTF_16LE,
-                                             ByteOrderMark.UTF_16BE,
-                                             ByteOrderMark.UTF_32LE,
-                                             ByteOrderMark.UTF_32BE)) {
+    try (var bomInputStream = BOMInputStream.builder()
+      .setInputStream(new FileInputStream(filename))
+      .setInclude(false)
+      .setByteOrderMarks(
+        ByteOrderMark.UTF_8,
+        ByteOrderMark.UTF_16LE,
+        ByteOrderMark.UTF_16BE,
+        ByteOrderMark.UTF_32LE,
+        ByteOrderMark.UTF_32BE
+      )
+      .get()) {
       ByteOrderMark bom = bomInputStream.getBOM();
       Charset charset = bom != null ? Charset.forName(bom.getCharsetName()) : defaultCharset;
       byte[] bytes = bomInputStream.readAllBytes();

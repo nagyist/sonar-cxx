@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -70,9 +70,9 @@ class XunitReportParserTest {
     parser = new StaxParser(parserHandler, false);
     File report = TestUtils.loadResource(pathPrefix + "invalid-time-xunit-report.xml");
 
-    javax.xml.stream.XMLStreamException thrown = catchThrowableOfType(() -> {
+    javax.xml.stream.XMLStreamException thrown = catchThrowableOfType(javax.xml.stream.XMLStreamException.class, () -> {
       parser.parse(report);
-    }, javax.xml.stream.XMLStreamException.class);
+    });
     assertThat(thrown).isExactlyInstanceOf(javax.xml.stream.XMLStreamException.class);
   }
 

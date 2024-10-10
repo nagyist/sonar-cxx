@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2021-2022 SonarOpenCommunity
+ * Copyright (C) 2021-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -43,7 +43,7 @@ class AbstractOneStatementPerLineCheckTest {
 
     @Override
     public boolean isExcluded(AstNode statementNode) {
-      return statementNode.getChild(0).is(MiniCGrammar.COMPOUND_STATEMENT);
+      return statementNode.getFirstChild().is(MiniCGrammar.COMPOUND_STATEMENT);
     }
 
   }

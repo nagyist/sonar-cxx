@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -25,8 +25,8 @@ import java.util.Map;
 import javax.xml.stream.XMLStreamException;
 import org.codehaus.staxmate.in.SMHierarchicCursor;
 import org.codehaus.staxmate.in.SMInputCursor;
-import org.sonar.api.utils.log.Logger;
-import org.sonar.api.utils.log.Loggers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.sonar.cxx.sensors.coverage.CoverageMeasures;
 import org.sonar.cxx.sensors.coverage.CoverageParser;
 import org.sonar.cxx.sensors.utils.EmptyReportException;
@@ -38,7 +38,7 @@ import org.sonar.cxx.sensors.utils.StaxParser;
  */
 public class VisualStudioParser implements CoverageParser {
 
-  private static final Logger LOG = Loggers.get(VisualStudioParser.class);
+  private static final Logger LOG = LoggerFactory.getLogger(VisualStudioParser.class);
 
   private static void collectModuleMeasures(SMInputCursor module, Map<String, CoverageMeasures> coverageData)
     throws XMLStreamException {

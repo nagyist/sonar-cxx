@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -73,14 +73,6 @@ public final class AstWalker {
     for (int i = visitors.size() - 1; i >= 0; i--) {
       visitors.get(i).leaveFile(ast);
     }
-  }
-
-  /**
-   * @deprecated in 1.18, use {@link #walkAndVisit(AstNode)} instead
-   */
-  @Deprecated(since = "1.18")
-  public void walkVisitAndListen(AstNode ast, Object output) {
-    walkAndVisit(ast);
   }
 
   private void visit(AstNode ast) {

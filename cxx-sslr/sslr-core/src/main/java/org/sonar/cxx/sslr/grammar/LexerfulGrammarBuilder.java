@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -182,14 +182,6 @@ public class LexerfulGrammarBuilder extends GrammarBuilder {
    */
   public Object bridge(TokenType from, TokenType to) {
     return new TokensBridgeExpression(from, to);
-  }
-
-  /**
-   * @deprecated in 1.19, use {@link #anyToken()} instead.
-   */
-  @Deprecated(since = "1.19")
-  public Object everything() {
-    return AnyTokenExpression.INSTANCE;
   }
 
   /**

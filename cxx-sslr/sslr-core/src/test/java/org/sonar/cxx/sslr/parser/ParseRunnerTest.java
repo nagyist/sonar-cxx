@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2022 SonarOpenCommunity
+ * Copyright (C) 2022-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -32,9 +32,9 @@ class ParseRunnerTest {
 
   @Test
   void should_not_accept_null() {
-    var thrown = catchThrowableOfType(
-      () -> new ParseRunner(null),
-      NullPointerException.class);
+    var thrown = catchThrowableOfType(NullPointerException.class,
+      () -> new ParseRunner(null)
+    );
     assertThat(thrown).isExactlyInstanceOf(NullPointerException.class);
   }
 

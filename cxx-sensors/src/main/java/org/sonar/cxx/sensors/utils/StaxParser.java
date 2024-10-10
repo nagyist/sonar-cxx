@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -31,15 +31,15 @@ import javax.xml.stream.XMLStreamException;
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.staxmate.SMInputFactory;
 import org.codehaus.staxmate.in.SMHierarchicCursor;
-import org.sonar.api.utils.log.Logger;
-import org.sonar.api.utils.log.Loggers;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * helper class StaxParser
  */
 public class StaxParser {
 
-  private static final Logger LOG = Loggers.get(StaxParser.class);
+  private static final Logger LOG = LoggerFactory.getLogger(StaxParser.class);
   private SMInputFactory inf;
   private XmlStreamHandler streamHandler;
   private boolean isoControlCharsAwareParser;

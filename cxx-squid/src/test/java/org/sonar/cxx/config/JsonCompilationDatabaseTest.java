@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -27,7 +27,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
-import org.sonar.api.internal.apachecommons.lang.SystemUtils;
+import org.sonar.api.internal.apachecommons.lang3.SystemUtils;
 
 class JsonCompilationDatabaseTest {
 
@@ -41,9 +41,9 @@ class JsonCompilationDatabaseTest {
     jsonDb.parse(file);
 
     List<String> defines = squidConfig.getValues(CxxSquidConfiguration.GLOBAL,
-                                                 CxxSquidConfiguration.DEFINES);
+      CxxSquidConfiguration.DEFINES);
     List<String> includes = squidConfig.getValues(CxxSquidConfiguration.GLOBAL,
-                                                  CxxSquidConfiguration.INCLUDE_DIRECTORIES);
+      CxxSquidConfiguration.INCLUDE_DIRECTORIES);
     List<Path> files = squidConfig.getFiles();
 
     var cwd = Path.of(".");
@@ -292,9 +292,9 @@ class JsonCompilationDatabaseTest {
     var file = new File("src/test/resources/jsondb/invalid.json");
     var jsonDb = new JsonCompilationDatabase(squidConfig);
 
-    JsonMappingException thrown = catchThrowableOfType(() -> {
+    JsonMappingException thrown = catchThrowableOfType(JsonMappingException.class, () -> {
       jsonDb.parse(file);
-    }, JsonMappingException.class);
+    });
     assertThat(thrown).isExactlyInstanceOf(JsonMappingException.class);
   }
 
@@ -304,9 +304,9 @@ class JsonCompilationDatabaseTest {
     var file = new File("src/test/resources/jsondb/not-found.json");
     var jsonDb = new JsonCompilationDatabase(squidConfig);
 
-    FileNotFoundException thrown = catchThrowableOfType(() -> {
+    FileNotFoundException thrown = catchThrowableOfType(FileNotFoundException.class, () -> {
       jsonDb.parse(file);
-    }, FileNotFoundException.class);
+    });
     assertThat(thrown).isExactlyInstanceOf(FileNotFoundException.class);
   }
 

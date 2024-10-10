@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -87,7 +87,6 @@ class ExpressionTest extends ParserBaseTestHelper {
     mockRule(CxxGrammarImpl.parameterDeclarationClause);
 
     assertThatParser()
-      .matches("( )")
       .matches("( parameterDeclarationClause )");
   }
 

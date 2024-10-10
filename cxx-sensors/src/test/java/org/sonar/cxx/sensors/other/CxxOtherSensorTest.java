@@ -1,6 +1,6 @@
 /*
  * C++ Community Plugin (cxx plugin)
- * Copyright (C) 2010-2023 SonarOpenCommunity
+ * Copyright (C) 2010-2024 SonarOpenCommunity
  * http://github.com/SonarOpenCommunity/sonar-cxx
  *
  * This program is free software; you can redistribute it and/or
@@ -29,7 +29,7 @@ import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.api.batch.sensor.internal.DefaultSensorDescriptor;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
 import org.sonar.api.config.internal.MapSettings;
-import org.sonar.api.utils.log.LogTesterJUnit5;
+import org.sonar.api.testfixtures.log.LogTesterJUnit5;
 import org.sonar.cxx.sensors.utils.CxxReportSensor;
 import org.sonar.cxx.sensors.utils.TestUtils;
 
@@ -68,7 +68,7 @@ class CxxOtherSensorTest {
   void shouldReportFileLevelViolations() {
     var context = SensorContextTester.create(fs.baseDir());
     settings.setProperty(CxxOtherSensor.REPORT_PATH_KEY,
-                         "externalrules-reports/externalrules-result-filelevelviolation.xml");
+      "externalrules-reports/externalrules-result-filelevelviolation.xml");
     context.setSettings(settings);
 
     context.fileSystem().add(TestInputFileBuilder.create("ProjectKey", "sources/utils/code_chunks.cpp")
@@ -84,7 +84,7 @@ class CxxOtherSensorTest {
   void shouldReportProjectLevelViolations() {
     var context = SensorContextTester.create(fs.baseDir());
     settings.setProperty(CxxOtherSensor.REPORT_PATH_KEY,
-                         "externalrules-reports/externalrules-result-projectlevelviolation.xml");
+      "externalrules-reports/externalrules-result-projectlevelviolation.xml");
     context.setSettings(settings);
 
     sensor = new CxxOtherSensor();
@@ -101,9 +101,9 @@ class CxxOtherSensorTest {
     context.setSettings(settings);
     sensor = new CxxOtherSensor();
 
-    IllegalStateException thrown = catchThrowableOfType(() -> {
+    IllegalStateException thrown = catchThrowableOfType(IllegalStateException.class, () -> {
       sensor.execute(context);
-    }, IllegalStateException.class);
+    });
     assertThat(thrown).isExactlyInstanceOf(IllegalStateException.class);
     assertThat(context.allIssues()).isEmpty();
   }
@@ -128,9 +128,9 @@ class CxxOtherSensorTest {
     context.setSettings(settings);
     sensor = new CxxOtherSensor();
 
-    IllegalStateException thrown = catchThrowableOfType(() -> {
+    IllegalStateException thrown = catchThrowableOfType(IllegalStateException.class, () -> {
       sensor.execute(context);
-    }, IllegalStateException.class);
+    });
     assertThat(thrown).isExactlyInstanceOf(IllegalStateException.class);
   }
 
